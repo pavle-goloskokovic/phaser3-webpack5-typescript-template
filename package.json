@@ -4,7 +4,9 @@
   "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --mode development --open --port 3017",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -38,7 +40,17 @@
     "@types/lodash": "^4.14.109",
     "@types/node": "^10.3.0",
     "@types/stats.js": "^0.17.0",
+    "expose-loader": "^0.7.5",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "phaser3-docs": "github:photonstorm/phaser3-docs",
-    "typescript": "^2.9.1"
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "ts-loader": "^4.3.1",
+    "ts-node": "^6.0.5",
+    "typescript": "^2.9.1",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1",
+    "webpack-dev-server": "^3.1.4"
   }
 }
