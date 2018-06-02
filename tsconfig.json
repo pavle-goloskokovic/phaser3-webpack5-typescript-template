@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
+}
