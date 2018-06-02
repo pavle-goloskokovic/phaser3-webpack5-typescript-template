@@ -1,0 +1,31 @@
+{
+  "name": "phaser3-webpack4-typescript-boilerplate",
+  "version": "0.0.0",
+  "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate.git"
+  },
+  "keywords": [
+    "phaser",
+    "type",
+    "script",
+    "typescript",
+    "boilerplate",
+    "gamedev",
+    "game",
+    "development",
+    "javascript",
+    "webpack"
+  ],
+  "author": "Pavle Goloskoković",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate/issues"
+  },
+  "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme"
+}
