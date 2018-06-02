@@ -12,7 +12,7 @@ import * as appConfig  from './src/ts/app.config';
 
 export const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
-module.exports = {
+export default {
     entry: resolve(__dirname, 'src', 'ts', 'app.ts'),
     optimization: {
         splitChunks: {
