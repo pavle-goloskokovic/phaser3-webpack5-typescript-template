@@ -27,5 +27,18 @@
   "bugs": {
     "url": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate/issues"
   },
-  "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme"
+  "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme",
+  "dependencies": {
+    "js-logger": "^1.4.1",
+    "lodash": "^4.17.10",
+    "phaser": "^3.9.0",
+    "stats.js": "^0.17.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.109",
+    "@types/node": "^10.3.0",
+    "@types/stats.js": "^0.17.0",
+    "phaser3-docs": "github:photonstorm/phaser3-docs",
+    "typescript": "^2.9.1"
+  }
 }
