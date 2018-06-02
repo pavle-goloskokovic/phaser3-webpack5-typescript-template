@@ -2,6 +2,7 @@ import { resolve, join } from "path";
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pathToPhaser = join(__dirname, '/node_modules/phaser/');
 const phaser = join(pathToPhaser, 'dist/phaser.js');
@@ -73,6 +74,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
-        })
+        }),
+        new CopyWebpackPlugin([{
+            from: 'assets',
+            to: 'assets'
+        }])
     ]
 };
