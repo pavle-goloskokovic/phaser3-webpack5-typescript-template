@@ -1,0 +1,16 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    meta(property="og:title", content=htmlWebpackPlugin.options.title)
+    meta(property="og:description", content=htmlWebpackPlugin.options.data.description)
+
+    title=htmlWebpackPlugin.options.title
+
+    if (htmlWebpackPlugin.options.data.analyticsId)
+      include analytics.pug
+
+  body
+    #container
