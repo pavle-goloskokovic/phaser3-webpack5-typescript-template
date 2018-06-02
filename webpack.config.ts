@@ -9,6 +9,17 @@ import * as appConfig  from './src/ts/app.config';
 
 module.exports = {
     entry: resolve(__dirname, 'src', 'ts', 'app.ts'),
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    },
     output: {
         filename: '[name].js',
         path: resolve(__dirname, 'dist')
@@ -41,6 +52,7 @@ module.exports = {
             phaser: phaser
         }
     },
+    devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
             title: appConfig.title,
