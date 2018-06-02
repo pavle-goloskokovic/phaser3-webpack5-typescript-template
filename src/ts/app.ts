@@ -2,9 +2,8 @@
  * App/game entry point
  */
 
-import '../style' // loading stylus css
+import './../style/index.styl' // loading stylus css
 
-import 'pixi.js'
 import 'phaser' // loading Phaser with dependencies
 
 import * as _ from 'lodash'

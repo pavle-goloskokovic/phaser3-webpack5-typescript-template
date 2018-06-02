@@ -1,5 +1,6 @@
 import { resolve, join } from "path";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const pathToPhaser = join(__dirname, '/node_modules/phaser/');
 const phaser = join(pathToPhaser, 'dist/phaser.js');
@@ -25,6 +26,10 @@ module.exports = {
                 query: { pretty: true }
             },
             {
+                test: /\.styl$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
+            },
+            {
                 test: /phaser\.js$/,
                 loader: 'expose-loader?Phaser'
             }
@@ -43,6 +48,10 @@ module.exports = {
             data: {
                 description: appConfig.description
             }
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
         })
     ]
 };
