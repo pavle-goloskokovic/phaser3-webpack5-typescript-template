@@ -12,7 +12,7 @@ export default class Boot extends Phaser.Scene {
     create() {
         logger.info('Boot enter');
 
-        this.game.sound.mute = appConfig.mute;
+        this.sound.mute = appConfig.mute;
 
         // TODO update when scale manager gets available
         // // set scale mode
@@ -31,7 +31,7 @@ export default class Boot extends Phaser.Scene {
     }
 
     handleOrientation () {
-        if (!this.game.device.os.desktop
+        if (!this.sys.game.device.os.desktop
             && (appConfig.orientation.forceLandscape || appConfig.orientation.forcePortrait)) {
 
             // TODO update when scale manager gets available
@@ -53,7 +53,7 @@ export default class Boot extends Phaser.Scene {
     }
 
     handleFullScreen () {
-        if (!this.game.device.os.desktop){
+        if (!this.sys.game.device.os.desktop){
             // TODO update when scale manager gets available
             // && this.scale.compatibility.supportsFullScreen) {
             //
