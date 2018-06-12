@@ -44,6 +44,7 @@
     "css-loader": "^0.28.11",
     "expose-loader": "^0.7.5",
     "html-loader": "^0.5.5",
+    "html-webpack-banner-plugin": "github:pavle-goloskokovic/html-webpack-banner-plugin",
     "html-webpack-plugin": "^3.2.0",
     "imagemin-webpack-plugin": "^2.1.5",
     "mini-css-extract-plugin": "^0.4.0",

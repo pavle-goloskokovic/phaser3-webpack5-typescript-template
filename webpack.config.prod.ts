@@ -1,6 +1,7 @@
 import { resolve } from "path";
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
@@ -43,6 +44,9 @@ export default {
                     mangle: false
                 }
             }
+        }),
+        new HtmlWebpackBannerPlugin({
+            banner: banner,
         }),
         new MiniCssExtractPlugin({
             filename: "[hash].[name].css",

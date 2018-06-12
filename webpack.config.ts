@@ -1,6 +1,7 @@
 import { resolve, join } from "path";
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -67,9 +68,11 @@ export default {
             title: appConfig.title,
             template: './src/templates/index.pug',
             data: {
-                description: appConfig.description,
-                banner: banner
+                description: appConfig.description
             }
+        }),
+        new HtmlWebpackBannerPlugin({
+            banner: banner,
         }),
         new MiniCssExtractPlugin({
             filename: "[name].css",
