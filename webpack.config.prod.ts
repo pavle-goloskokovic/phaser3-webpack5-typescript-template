@@ -1,5 +1,6 @@
 import { resolve } from "path";
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -23,6 +24,9 @@ export default {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
+        new CleanWebpackPlugin([
+            'dist'
+        ]),
         new webpack.BannerPlugin({
             banner: banner,
             entryOnly: true
