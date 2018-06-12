@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pathToPhaser = join(__dirname, '/node_modules/phaser/');
@@ -47,7 +46,12 @@ export default {
                 test: /\.styl$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    },
                     'stylus-loader'
                 ]
             },
@@ -83,7 +87,6 @@ export default {
             filename: '[name].css',
             chunkFilename: '[id].css'
         }),
-        new OptimizeCssAssetsPlugin(),
         new CopyWebpackPlugin([{
             from: 'assets',
             to: 'assets'

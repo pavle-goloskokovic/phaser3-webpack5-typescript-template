@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
@@ -56,7 +55,6 @@ export default {
             filename: '[hash].[name].css',
             chunkFilename: '[hash].[id].css'
         }),
-        new OptimizeCssAssetsPlugin(),
         new CopyWebpackPlugin([{
             from: 'assets',
             to: 'assets'
