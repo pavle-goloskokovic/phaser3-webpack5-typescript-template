@@ -1,15 +1,16 @@
-import { resolve } from "path";
+import { resolve } from 'path';
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 import devConfig from './webpack.config';
-import { banner } from "./webpack.config";
-import * as appConfig from "./src/ts/app.config";
+import { banner } from './webpack.config';
+import * as appConfig from './src/ts/app.config';
 
 export default {
     entry: devConfig.entry,
@@ -36,7 +37,6 @@ export default {
             template: './src/templates/index.pug',
             data: {
                 description: appConfig.description,
-                banner: banner,
                 analyticsId: appConfig.analyticsId
             },
             minify: {
@@ -50,12 +50,13 @@ export default {
             }
         }),
         new HtmlWebpackBannerPlugin({
-            banner: banner,
+            banner: banner
         }),
         new MiniCssExtractPlugin({
-            filename: "[hash].[name].css",
-            chunkFilename: "[hash].[id].css"
+            filename: '[hash].[name].css',
+            chunkFilename: '[hash].[id].css'
         }),
+        new OptimizeCssAssetsPlugin(),
         new CopyWebpackPlugin([{
             from: 'assets',
             to: 'assets'

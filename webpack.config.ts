@@ -1,8 +1,9 @@
-import { resolve, join } from "path";
+import { resolve, join } from 'path';
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pathToPhaser = join(__dirname, '/node_modules/phaser/');
@@ -20,8 +21,8 @@ export default {
             cacheGroups: {
                 commons: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: "vendors",
-                    chunks: "all"
+                    name: 'vendors',
+                    chunks: 'all'
                 }
             }
         }
@@ -35,7 +36,7 @@ export default {
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 test: /\.pug?$/,
@@ -44,7 +45,11 @@ export default {
             },
             {
                 test: /\.styl$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'stylus-loader'
+                ]
             },
             {
                 test: /phaser\.js$/,
@@ -53,7 +58,7 @@ export default {
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: ['.tsx', '.ts', '.js', '.styl'],
         alias: {
             phaser: phaser
         }
@@ -72,12 +77,13 @@ export default {
             }
         }),
         new HtmlWebpackBannerPlugin({
-            banner: banner,
+            banner: banner
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         }),
+        new OptimizeCssAssetsPlugin(),
         new CopyWebpackPlugin([{
             from: 'assets',
             to: 'assets'

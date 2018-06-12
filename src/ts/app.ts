@@ -2,7 +2,7 @@
  * App/game entry point
  */
 
-import './../style/index.styl' // loading stylus css
+import '../style' // loading stylus css
 
 import 'phaser' // loading Phaser with dependencies
 
