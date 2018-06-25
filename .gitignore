@@ -37,7 +37,8 @@ node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
-typings/
+# TODO uncomment when declaration files become part of Phaser 3 package
+# typings/
 
 # Optional npm cache directory
 .npm
