@@ -7,7 +7,8 @@ export default class PhaserStatsGame extends Phaser.Game {
 
     private stats: Stats;
 
-    constructor(config: GameConfig) {
+    constructor(config: Phaser.Types.Core.GameConfig)
+    {
         super(config);
 
         this.stats = new Stats();
@@ -24,7 +25,8 @@ export default class PhaserStatsGame extends Phaser.Game {
         `;
     }
 
-    step(time: integer, delta: number): void {
+    step(time: integer, delta: number): void
+    {
         this.stats.begin();
         super.step(time, delta);
         this.stats.end();

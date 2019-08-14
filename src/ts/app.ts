@@ -25,9 +25,9 @@ logger.setLevel(appConfig.logLevel);
 
 /**
  * Phaser game config
- * @type {GameConfig}
+ * @type {Phaser.Types.Core.GameConfig}
  */
-let config: GameConfig = {
+let config: Phaser.Types.Core.GameConfig = {
     type:     Phaser.AUTO,
     parent:   'container',     // parent id - '' means  no container
     width:    appConfig.size.x,

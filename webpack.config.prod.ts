@@ -4,37 +4,34 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
-import devConfig from './webpack.config';
-import { banner } from './webpack.config';
+import webpackCommon, { banner } from './webpack.common';
 import * as appConfig from './src/ts/app.config';
 
 export default {
-    entry: devConfig.entry,
-    optimization: devConfig.optimization,
+    mode: 'production',
+    entry: webpackCommon.entry,
+    optimization: webpackCommon.optimization,
     output: {
         filename: '[chunkhash].[name].js',
         path: resolve(__dirname, 'dist')
     },
-    module: devConfig.module,
-    resolve: devConfig.resolve,
+    module: webpackCommon.module,
+    resolve: webpackCommon.resolve,
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': <any>JSON.stringify('production')
         }),
-        new CleanWebpackPlugin([
-            'dist'
-        ]),
+        new CleanWebpackPlugin(),
         new webpack.BannerPlugin({
             banner: banner,
             entryOnly: true
         }),
         new HtmlWebpackPlugin({
-            title: appConfig.title,
             template: './src/templates/index.pug',
-            data: {
+            templateParameters: {
+                title: appConfig.title,
                 description: appConfig.description,
                 analyticsId: appConfig.analyticsId
             },
@@ -53,20 +50,20 @@ export default {
         }),
         new MiniCssExtractPlugin({
             filename: '[hash].[name].css',
-            chunkFilename: '[hash].[id].css'
+            chunkFilename: '[hash].[id].css',
+            ignoreOrder: false, // Enable to remove warnings about conflicting order
         }),
-        new CopyWebpackPlugin([{
-            from: 'assets',
-            to: 'assets'
-        }]),
         new ImageminPlugin({ // Make sure that the plugin is after any plugins that add images
-            test: /\.png$/i,
+            test: /\.(jpe?g|png|gif|svg)$/i,
             optipng: {
                 optimizationLevel: 7,
             },
             pngquant: {
                 quality: '65-90',
                 speed: 4,
+            },
+            jpegtran: {
+                progressive: true
             }
         })
     ]
