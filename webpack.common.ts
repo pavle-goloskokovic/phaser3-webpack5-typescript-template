@@ -59,6 +59,20 @@ export default {
                     'stylus-loader'
                 ]
             },
+            /**
+             * Assets
+             */
+            {
+                test: RegExp(join(__dirname, 'src', 'assets', '(audio|images)', '.+$')
+                    .replace(/\\/g,'\\\\')),
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][hash].[name].[ext]',
+                        context: 'src'
+                    }
+                }]
+            },
             {
                 test: /phaser\.js$/,
                 loader: 'expose-loader?Phaser'

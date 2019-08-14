@@ -4,9 +4,9 @@
   "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --port 3017",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production --config webpack.config.prod.ts"
+    "start": "webpack-dev-server --open --port 3017",
+    "dev": "webpack",
+    "build": "webpack --config webpack.config.prod.ts"
   },
   "repository": {
     "type": "git",
@@ -44,6 +44,7 @@
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "expose-loader": "^0.7.5",
+    "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-banner-plugin": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
