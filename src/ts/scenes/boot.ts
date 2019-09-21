@@ -1,5 +1,5 @@
-import * as logger from 'js-logger'
-import * as gameConfig from '../game.config'
+import * as logger from 'js-logger';
+import * as gameConfig from '../game.config';
 
 /**
  * Boot Phaser game scene.
@@ -9,7 +9,8 @@ import * as gameConfig from '../game.config'
  */
 export default class Boot extends Phaser.Scene {
 
-    create() {
+    create (): void
+    {
         logger.info('Boot enter');
 
         this.sound.mute = gameConfig.mute;
@@ -30,9 +31,11 @@ export default class Boot extends Phaser.Scene {
         this.scene.start('preloader');
     }
 
-    handleOrientation () {
+    handleOrientation (): void
+    {
         if (!this.sys.game.device.os.desktop
-            && (gameConfig.orientation.forceLandscape || gameConfig.orientation.forcePortrait)) {
+            && (gameConfig.orientation.forceLandscape || gameConfig.orientation.forcePortrait))
+        {
 
             // TODO update when scale manager gets available
             // this.scale.forceOrientation(
@@ -44,16 +47,20 @@ export default class Boot extends Phaser.Scene {
         }
     }
 
-    enterIncorrectOrientation () {
+    enterIncorrectOrientation (): void
+    {
         // TODO handle incorrect orientation
     }
 
-    leaveIncorrectOrientation () {
+    leaveIncorrectOrientation (): void
+    {
         // TODO handle correct orientation
     }
 
-    handleFullScreen () {
-        if (!this.sys.game.device.os.desktop){
+    handleFullScreen (): void
+    {
+        if (!this.sys.game.device.os.desktop)
+        {
             // TODO update when scale manager gets available
             // && this.scale.compatibility.supportsFullScreen) {
             //
@@ -63,4 +70,4 @@ export default class Boot extends Phaser.Scene {
             //TODO handle full screen
         }
     }
-};
+}

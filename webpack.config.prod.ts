@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';

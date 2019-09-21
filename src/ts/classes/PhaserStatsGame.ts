@@ -1,4 +1,4 @@
-import Stats = require('stats.js')
+import * as Stats from 'stats.js';
 
 /**
  * Phaser game implementation which adds performance stats to the game.
@@ -7,7 +7,7 @@ export default class PhaserStatsGame extends Phaser.Game {
 
     private stats: Stats;
 
-    constructor(config: Phaser.Types.Core.GameConfig)
+    constructor (config: Phaser.Types.Core.GameConfig)
     {
         super(config);
 
@@ -25,7 +25,7 @@ export default class PhaserStatsGame extends Phaser.Game {
         `;
     }
 
-    step(time: integer, delta: number): void
+    step (time: integer, delta: number): void
     {
         this.stats.begin();
         super.step(time, delta);

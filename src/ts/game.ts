@@ -2,20 +2,20 @@
  * Game entry point
  */
 
-import '../css/style.css' // loading css
+import '../css/style.css'; // loading css
 
-import 'phaser' // loading Phaser with dependencies
+import 'phaser'; // loading Phaser with dependencies
 
-import * as _ from 'lodash'
-import * as logger from 'js-logger'
+import * as _ from 'lodash';
+import * as logger from 'js-logger';
 
-import * as gameConfig from './game.config'
+import * as gameConfig from './game.config';
 
-import PhaserStatsGame from "./classes/PhaserStatsGame";
+import PhaserStatsGame from './classes/PhaserStatsGame';
 
-import Boot from './scenes/boot'
-import Preloader from './scenes/preloader'
-import Game from "./scenes/game";
+import Boot from './scenes/boot';
+import Preloader from './scenes/preloader';
+import Game from './scenes/game';
 
 /**
  * Setup logger
@@ -27,11 +27,11 @@ logger.setLevel(gameConfig.logLevel);
  * Phaser game config
  * @type {Phaser.Types.Core.GameConfig}
  */
-let config: Phaser.Types.Core.GameConfig = {
-    type:     Phaser.AUTO,
-    parent:   'container',     // parent id - '' means  no container
-    width:    gameConfig.size.x,
-    height:   gameConfig.size.y
+const config: Phaser.Types.Core.GameConfig = {
+    type: Phaser.AUTO,
+    parent: 'container',     // parent id - '' means  no container
+    width: gameConfig.size.x,
+    height: gameConfig.size.y
 };
 
 /**
@@ -40,9 +40,12 @@ let config: Phaser.Types.Core.GameConfig = {
  * @type {Phaser.Game}
  */
 let game: Phaser.Game;
-if(gameConfig.stats && process.env.NODE_ENV !== 'production'){
+if(gameConfig.stats && process.env.NODE_ENV !== 'production')
+{
     game = new PhaserStatsGame(config);
-} else {
+}
+else
+{
     game = new Phaser.Game(config);
 }
 
@@ -53,7 +56,8 @@ _.each({
     boot: Boot,
     preloader: Preloader,
     game: Game
-}, function(scene, key) {
+}, function (scene, key)
+{
     game.scene.add(key, scene);
 });
 

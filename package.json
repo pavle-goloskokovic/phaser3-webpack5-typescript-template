@@ -1,66 +1,72 @@
 {
-  "name": "phaser3-webpack4-typescript-boilerplate",
-  "version": "0.1.0",
-  "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
-  "main": "src/ts/game.ts",
-  "scripts": {
-    "start": "webpack-dev-server --open --port 3017",
-    "build:dev": "webpack",
-    "build:prod": "webpack --config webpack.config.prod.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate.git"
-  },
-  "keywords": [
-    "phaser",
-    "type",
-    "script",
-    "typescript",
-    "boilerplate",
-    "gamedev",
-    "game",
-    "development",
-    "javascript",
-    "webpack"
-  ],
-  "author": "Pavle Goloskoković",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate/issues"
-  },
-  "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme",
-  "dependencies": {
-    "js-logger": "^1.6.0",
-    "lodash": "^4.17.15",
-    "phaser": "^3.19.0",
-    "stats.js": "^0.17.0"
-  },
-  "devDependencies": {
-    "@types/html-webpack-plugin": "^3.2.1",
-    "@types/lodash": "^4.14.136",
-    "@types/mini-css-extract-plugin": "^0.8.0",
-    "@types/node": "^12.7.1",
-    "@types/optimize-css-assets-webpack-plugin": "^5.0.0",
-    "@types/stats.js": "^0.17.0",
-    "@types/webpack-merge": "^4.1.5",
-    "clean-webpack-plugin": "^3.0.0",
-    "compile-ejs-loader": "0.0.2",
-    "css-loader": "^3.2.0",
-    "ejs": "^2.7.1",
-    "expose-loader": "^0.7.5",
-    "file-loader": "^4.2.0",
-    "html-webpack-banner-plugin": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "mini-css-extract-plugin": "^0.8.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "ts-loader": "^6.0.4",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.5.3",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0",
-    "webpack-merge": "^4.2.2"
-  }
+    "name": "phaser3-webpack4-typescript-boilerplate",
+    "version": "0.1.0",
+    "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
+    "main": "src/ts/game.ts",
+    "scripts": {
+        "start": "webpack-dev-server --open --port 3017",
+        "build:dev": "webpack",
+        "build:prod": "webpack --config webpack.config.prod.ts",
+        "eslint": "eslint src/ts/**/*.ts *.ts",
+        "eslint:fix": "eslint --fix src/ts/**/*.ts *.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate.git"
+    },
+    "keywords": [
+        "phaser",
+        "type",
+        "script",
+        "typescript",
+        "boilerplate",
+        "gamedev",
+        "game",
+        "development",
+        "javascript",
+        "webpack"
+    ],
+    "author": "Pavle Goloskoković",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate/issues"
+    },
+    "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme",
+    "dependencies": {
+        "js-logger": "^1.6.0",
+        "lodash": "^4.17.15",
+        "phaser": "^3.19.0",
+        "stats.js": "^0.17.0"
+    },
+    "devDependencies": {
+        "@types/html-webpack-plugin": "^3.2.1",
+        "@types/lodash": "^4.14.136",
+        "@types/mini-css-extract-plugin": "^0.8.0",
+        "@types/node": "^12.7.1",
+        "@types/optimize-css-assets-webpack-plugin": "^5.0.0",
+        "@types/stats.js": "^0.17.0",
+        "@types/webpack-merge": "^4.1.5",
+        "@typescript-eslint/eslint-plugin": "^2.3.0",
+        "@typescript-eslint/parser": "^2.3.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "compile-ejs-loader": "0.0.2",
+        "css-loader": "^3.2.0",
+        "ejs": "^2.7.1",
+        "eslint": "^6.4.0",
+        "eslint-plugin-brace-rules": "^0.1.6",
+        "expose-loader": "^0.7.5",
+        "file-loader": "^4.2.0",
+        "html-webpack-banner-plugin": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "mini-css-extract-plugin": "^0.8.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "ts-loader": "^6.0.4",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3",
+        "webpack": "^4.39.2",
+        "webpack-cli": "^3.3.6",
+        "webpack-dev-server": "^3.8.0",
+        "webpack-merge": "^4.2.2"
+    }
 }

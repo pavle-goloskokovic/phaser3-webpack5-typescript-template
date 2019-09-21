@@ -1,4 +1,4 @@
-import * as logger from 'js-logger'
+import * as logger from 'js-logger';
 
 /**
  * Game title used for page title tag.
@@ -31,8 +31,8 @@ export const logLevel = process.env.NODE_ENV !== 'production' ? logger.DEBUG : l
  * @type {{x: number; y: number}}
  */
 export const size: {
-    readonly x:number
-    readonly y:number
+    readonly x: number;
+    readonly y: number;
 } = {
     x: 1070,
     y: 600
@@ -42,8 +42,8 @@ export const size: {
  * @type {{forceLandscape: boolean; forcePortrait: boolean}}
  */
 export const orientation: {
-    readonly forceLandscape:boolean
-    readonly forcePortrait:boolean
+    readonly forceLandscape: boolean;
+    readonly forcePortrait: boolean;
 } = {
     forceLandscape: false,
     forcePortrait: false

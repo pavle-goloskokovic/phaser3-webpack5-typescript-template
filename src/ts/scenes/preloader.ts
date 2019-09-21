@@ -1,4 +1,4 @@
-import * as logger from 'js-logger'
+import * as logger from 'js-logger';
 
 /**
  * Preloader Phaser scene.
@@ -8,7 +8,8 @@ import * as logger from 'js-logger'
  */
 export default class Preloader extends Phaser.Scene {
 
-    preload () {
+    preload (): void
+    {
         logger.info('Preloader enter');
 
         // TODO preload assets
@@ -17,7 +18,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('logo', require('../../assets/images/logo.png'));
     }
 
-    create () {
+    create (): void
+    {
         logger.info('Preloader leave');
 
         this.scene.start('game');
