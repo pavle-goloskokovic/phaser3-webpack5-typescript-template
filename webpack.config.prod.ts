@@ -1,39 +1,52 @@
 import { resolve } from 'path';
-const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import * as webpack from 'webpack';
+import * as merge from 'webpack-merge';
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import * as OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import ImageminPlugin from 'imagemin-webpack-plugin';
 
-import webpackCommon, { banner } from './webpack.common';
-import * as appConfig from './src/ts/app.config';
+import common, { banner } from './webpack.common';
+import * as gameConfig from './src/ts/game.config';
 
-export default {
-    mode: 'production',
-    entry: webpackCommon.entry,
-    optimization: webpackCommon.optimization,
+export default merge(common, <webpack.Configuration>{
+    mode: 'production', // "production" | "development" | "none"
+    // Chosen mode tells webpack to use its built-in optimizations accordingly.
     output: {
-        filename: '[chunkhash].[name].js',
-        path: resolve(__dirname, 'dist')
+        // options related to how webpack emits results
+        filename: '[name].[contenthash].js', // string
+        // the filename template for entry chunks
+        path: resolve(__dirname, 'dist'), // string
+        // the target directory for all output files
+        // must be an absolute path (use the Node.js path module)
+        // publicPath: "/assets/", // string
+        // the url to the output directory resolved relative to the HTML page
     },
-    module: webpackCommon.module,
-    resolve: webpackCommon.resolve,
+    module: {
+        // configuration regarding modules
+        rules: [
+            // rules for modules (configure loaders, parser options, etc.)
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            }
+        ]
+    },
     plugins: [
+        // list of additional plugins
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': <any>JSON.stringify('production')
-        }),
-        new CleanWebpackPlugin(),
-        new webpack.BannerPlugin({
-            banner: banner,
-            entryOnly: true
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new HtmlWebpackPlugin({
-            template: './src/templates/index.pug',
+            template: './src/ejs/index.ejs',
             templateParameters: {
-                title: appConfig.title,
-                description: appConfig.description,
-                analyticsId: appConfig.analyticsId
+                title: gameConfig.title,
+                description: gameConfig.description,
+                analyticsId: gameConfig.analyticsId
             },
             minify: {
                 removeComments: true,
@@ -49,9 +62,14 @@ export default {
             banner: banner
         }),
         new MiniCssExtractPlugin({
-            filename: '[hash].[name].css',
-            chunkFilename: '[hash].[id].css',
-            ignoreOrder: false, // Enable to remove warnings about conflicting order
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            chunkFilename: 'style.[contenthash].css',
+        }),
+        new OptimizeCssAssetsPlugin({
+            cssProcessorPluginOptions: {
+                preset: ['default', { discardComments: { removeAll: true } }],
+            }
         }),
         new ImageminPlugin({ // Make sure that the plugin is after any plugins that add images
             test: /\.(jpe?g|png|gif|svg)$/i,
@@ -67,4 +85,4 @@ export default {
             }
         })
     ]
-}
+});

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= description %>">
+
+  <title><%= title %></title>
+
+  <%if (typeof analyticsId !== "undefined") { %>
+    <%- include analytics.ejs %>
+  <% } %>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+</html>

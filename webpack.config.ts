@@ -1,55 +1,64 @@
-import { resolve, join } from 'path';
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import { resolve } from 'path';
+import * as webpack from 'webpack';
+import * as merge from 'webpack-merge';
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import webpackCommon, { banner } from "./webpack.common";
+import common, { banner } from './webpack.common';
 
-import * as appConfig from './src/ts/app.config';
+import * as gameConfig from './src/ts/game.config';
 
-export default {
-    mode: 'development',
-    entry: webpackCommon.entry,
-    optimization: webpackCommon.optimization,
-    devtool: 'source-map',
-    devServer: {
-        contentBase: './dist'
-    },
+export default merge(common, <webpack.Configuration>{
+    mode: 'development', // "production" | "development" | "none"
+    // Chosen mode tells webpack to use its built-in optimizations accordingly.
+    devtool: 'source-map', // enum
+    // enhance debugging by adding meta info for the browser devtools
+    // source-map most detailed at the expense of build speed.
     output: {
-        filename: '[name].js',
-        path: resolve(__dirname, 'dist')
+        // options related to how webpack emits results
+        filename: '[name].js', // string
+        // the filename template for entry chunks
+        path: resolve(__dirname, 'dist'), // string
+        // the target directory for all output files
+        // must be an absolute path (use the Node.js path module)
+        // publicPath: "/assets/", // string
+        // the url to the output directory resolved relative to the HTML page
     },
-    module: webpackCommon.module,
-    resolve: webpackCommon.resolve,
+    module: {
+        // configuration regarding modules
+        rules: [
+            // rules for modules (configure loaders, parser options, etc.)
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            // only enable hot in development
+                            hmr: true,
+                        },
+                    },
+                    'css-loader'
+                ]
+            }
+        ]
+    },
+
     plugins: [
-        new webpack.BannerPlugin({
-            banner: banner,
-            entryOnly: true
-        }),
+        // list of additional plugins
         new HtmlWebpackPlugin({
-            template: './src/templates/index.pug',
+            template: './src/ejs/index.ejs',
             templateParameters: {
-                title: appConfig.title,
-                description: appConfig.description
-            },
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                conservativeCollapse: true,
-                minifyJS: {
-                    compress: false,
-                    mangle: false
-                }
+                title: gameConfig.title,
+                description: gameConfig.description
             }
         }),
         new HtmlWebpackBannerPlugin({
             banner: banner
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css',
-            ignoreOrder: false, // Enable to remove warnings about conflicting order
+            chunkFilename: 'style.css'
         })
     ]
-};
+});

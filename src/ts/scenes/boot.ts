@@ -1,5 +1,5 @@
 import * as logger from 'js-logger'
-import * as appConfig from '../app.config'
+import * as gameConfig from '../game.config'
 
 /**
  * Boot Phaser game scene.
@@ -12,7 +12,7 @@ export default class Boot extends Phaser.Scene {
     create() {
         logger.info('Boot enter');
 
-        this.sound.mute = appConfig.mute;
+        this.sound.mute = gameConfig.mute;
 
         // TODO update when scale manager gets available
         // // set scale mode
@@ -32,12 +32,12 @@ export default class Boot extends Phaser.Scene {
 
     handleOrientation () {
         if (!this.sys.game.device.os.desktop
-            && (appConfig.orientation.forceLandscape || appConfig.orientation.forcePortrait)) {
+            && (gameConfig.orientation.forceLandscape || gameConfig.orientation.forcePortrait)) {
 
             // TODO update when scale manager gets available
             // this.scale.forceOrientation(
-            //     appConfig.orientation.forceLandscape,
-            //     appConfig.orientation.forcePortrait
+            //     gameConfig.orientation.forceLandscape,
+            //     gameConfig.orientation.forcePortrait
             // );
             // this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
             // this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);

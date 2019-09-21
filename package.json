@@ -1,12 +1,12 @@
 {
   "name": "phaser3-webpack4-typescript-boilerplate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
-  "main": "index.js",
+  "main": "src/ts/game.ts",
   "scripts": {
     "start": "webpack-dev-server --open --port 3017",
-    "dev": "webpack",
-    "build": "webpack --config webpack.config.prod.ts"
+    "build:dev": "webpack",
+    "build:prod": "webpack --config webpack.config.prod.ts"
   },
   "repository": {
     "type": "git",
@@ -37,29 +37,30 @@
     "stats.js": "^0.17.0"
   },
   "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.1",
     "@types/lodash": "^4.14.136",
+    "@types/mini-css-extract-plugin": "^0.8.0",
     "@types/node": "^12.7.1",
+    "@types/optimize-css-assets-webpack-plugin": "^5.0.0",
     "@types/stats.js": "^0.17.0",
+    "@types/webpack-merge": "^4.1.5",
     "clean-webpack-plugin": "^3.0.0",
+    "compile-ejs-loader": "0.0.2",
     "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
+    "ejs": "^2.7.1",
     "expose-loader": "^0.7.5",
     "file-loader": "^4.2.0",
-    "html-loader": "^0.5.5",
     "html-webpack-banner-plugin": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "mini-css-extract-plugin": "^0.8.0",
-    "postcss-loader": "^3.0.0",
-    "pug": "^2.0.4",
-    "pug-loader": "^2.4.0",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "ts-loader": "^6.0.4",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2"
   }
 }

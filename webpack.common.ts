@@ -1,20 +1,24 @@
-import { join, resolve } from "path";
-
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const pathToPhaser = join(__dirname, '/node_modules/phaser/');
-const phaser = join(pathToPhaser, 'dist/phaser.js');
+import { resolve } from 'path';
+import * as webpack from 'webpack';
+import { CleanWebpackPlugin }  from 'clean-webpack-plugin';
 
 const pkg = require('./package.json');
 
 export const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
-export default {
-    entry: resolve(__dirname, 'src', 'ts', 'app.ts'),
+export default <webpack.Configuration>{
+    entry: {
+        game: resolve(__dirname, 'src', 'ts', 'game.ts') // string | object | array
+    },
+    // defaults to ./src
+    // Here the application starts executing
+    // and webpack starts bundling
     optimization: {
+        moduleIds: 'hashed',
+        runtimeChunk: 'single',
         splitChunks: {
             cacheGroups: {
-                commons: {
+                vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
                     chunks: 'all'
@@ -23,66 +27,57 @@ export default {
         }
     },
     module: {
+        // configuration regarding modules
         rules: [
+            // rules for modules (configure loaders, parser options, etc.)
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/
             },
             {
-                test: /\.pug?$/,
-                loader: 'pug-loader',
-                query: { pretty: true }
-            },
-            {
-                test: /\.styl$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            // you can specify a publicPath here
-                            // by default it uses publicPath in webpackOptions.output
-                            // publicPath: '../',
-                            hmr: process.env.NODE_ENV === 'development',
-                        },
-                    },
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: [
-                                require('cssnano')()
-                            ]
-                        }
-                    },
-                    'stylus-loader'
-                ]
+                test: /\.ejs$/,
+                loader: 'compile-ejs-loader'
             },
             /**
              * Assets
              */
             {
-                test: RegExp(join(__dirname, 'src', 'assets', '(audio|images)', '.+$')
+                test: RegExp(resolve(__dirname, 'src', 'assets', '(audio|images)', '.+$')
                     .replace(/\\/g,'\\\\')),
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: '[path][hash].[name].[ext]',
+                        name: '[path][name].[contenthash].[ext]',
                         context: 'src'
                     }
                 }]
             },
             {
-                test: /phaser\.js$/,
-                loader: 'expose-loader?Phaser'
+                test: require.resolve('phaser'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'Phaser'
+                }]
             }
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.styl'],
-        alias: {
-            phaser: phaser
-        }
-    }
+        extensions: ['.ts', '.js'], // .js for Phaser imports
+        // extensions that are used
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'typeof CANVAS_RENDERER': JSON.stringify(true),
+            'typeof WEBGL_RENDERER': JSON.stringify(true),
+            'typeof EXPERIMENTAL': JSON.stringify(false),
+            'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
+            'typeof PLUGIN_FBINSTANT': JSON.stringify(false)
+        }),
+        new CleanWebpackPlugin(),
+        new webpack.BannerPlugin({
+            banner: banner,
+            entryOnly: true
+        })
+    ]
 };
