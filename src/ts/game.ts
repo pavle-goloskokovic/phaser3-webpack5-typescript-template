@@ -6,7 +6,7 @@ import '../css/style.css'; // loading css
 
 import 'phaser'; // loading Phaser with dependencies
 
-import * as _ from 'lodash';
+import _forEach from 'lodash-es/forEach';
 import * as logger from 'js-logger';
 
 import * as gameConfig from './game.config';
@@ -52,7 +52,7 @@ else
 /**
  * Registering game scenes
  */
-_.each({
+_forEach({
     boot: Boot,
     preloader: Preloader,
     game: Game
