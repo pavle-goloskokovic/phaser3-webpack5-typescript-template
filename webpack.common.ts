@@ -1,18 +1,35 @@
 import { resolve } from 'path';
 import * as webpack from 'webpack';
 import { CleanWebpackPlugin }  from 'clean-webpack-plugin';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+import * as gameConfig from './src/ts/game.config';
+
+// boolean indicating if current build is dev or prod
+const prod: boolean = module.parent.id.includes('.prod');
 
 const pkg = require('./package.json');
-
-export const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
+const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
 export default <webpack.Configuration>{
     entry: {
+        // defaults to ./src
+        // Here the application starts executing
+        // and webpack starts bundling
         game: resolve(__dirname, 'src', 'ts', 'game.ts') // string | object | array
     },
-    // defaults to ./src
-    // Here the application starts executing
-    // and webpack starts bundling
+    output: {
+        // options related to how webpack emits results
+        filename: `[name]${ prod ? '.[contenthash]' : '' }.js`, // string
+        // the filename template for entry chunks
+        path: resolve(__dirname, 'dist'), // string
+        // the target directory for all output files
+        // must be an absolute path (use the Node.js path module)
+        // publicPath: "/assets/", // string
+        // the url to the output directory resolved relative to the HTML page
+    },
     optimization: {
         moduleIds: 'hashed',
         runtimeChunk: 'single',
@@ -39,6 +56,19 @@ export default <webpack.Configuration>{
                 test: /\.ejs$/,
                 loader: 'compile-ejs-loader'
             },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            // only enable hot in development
+                            hmr: !prod,
+                        },
+                    },
+                    'css-loader'
+                ]
+            },
             /**
              * Assets
              */
@@ -48,7 +78,7 @@ export default <webpack.Configuration>{
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[contenthash].[ext]',
+                        name: `[path][name]${ prod ? '.[contenthash]' : '' }.[ext]`,
                         context: 'src'
                     }
                 }]
@@ -78,6 +108,31 @@ export default <webpack.Configuration>{
         new webpack.BannerPlugin({
             banner: banner,
             entryOnly: true
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/ejs/index.ejs',
+            templateParameters: {
+                title: gameConfig.title,
+                description: gameConfig.description,
+                analyticsId: prod ? gameConfig.analyticsId : null
+            },
+            minify: prod ? {
+                removeComments: true,
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                minifyJS: {
+                    compress: false,
+                    mangle: false
+                }
+            } : {}
+        }),
+        new HtmlWebpackBannerPlugin({
+            banner: banner
+        }),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            chunkFilename: `style${ prod ? '.[contenthash]' : '' }.css`,
         })
     ]
 };
