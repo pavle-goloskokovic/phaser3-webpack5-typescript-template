@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import * as webpack from 'webpack';
+import * as TerserPlugin from 'terser-webpack-plugin';
 import { CleanWebpackPlugin }  from 'clean-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
@@ -41,7 +42,22 @@ export default <webpack.Configuration>{
                     chunks: 'all'
                 }
             }
-        }
+        },
+        minimizer: [
+            new TerserPlugin({
+                // webpack defaults
+                // https://github.com/webpack/webpack/blob/master/lib/WebpackOptionsDefaulter.js#L310
+                cache: true,
+                parallel: true,
+                sourceMap: !prod,
+                // custom, for removing comments
+                terserOptions: {
+                    output: {
+                        comments: /^\**!/i
+                    }
+                }
+            })
+        ]
     },
     module: {
         // configuration regarding modules
