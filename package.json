@@ -7,8 +7,8 @@
         "start": "webpack-dev-server --open --port 3017",
         "build:dev": "webpack",
         "build:prod": "webpack --config webpack.config.prod.ts",
-        "eslint": "eslint src/ts/**/*.ts *.ts",
-        "eslint:fix": "eslint --fix src/ts/**/*.ts *.ts"
+        "eslint": "eslint **/*.ts",
+        "eslint:fix": "eslint --fix **/*.ts"
     },
     "repository": {
         "type": "git",
