@@ -34,7 +34,7 @@
     "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme",
     "dependencies": {
         "js-logger": "^1.6.0",
-        "lodash-es": "^4.17.15",
+        "lodash-es": "^4.17.21",
         "phaser": "^3.19.0",
         "stats.js": "^0.17.0"
     },
