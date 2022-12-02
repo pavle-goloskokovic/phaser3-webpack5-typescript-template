@@ -45,7 +45,7 @@
         "@types/node": "^12.7.1",
         "@types/optimize-css-assets-webpack-plugin": "^5.0.0",
         "@types/stats.js": "^0.17.0",
-        "@types/terser-webpack-plugin": "^1.2.1",
+        "@types/terser-webpack-plugin": "^5.2.0",
         "@types/webpack-merge": "^4.1.5",
         "@typescript-eslint/eslint-plugin": "^2.3.0",
         "@typescript-eslint/parser": "^2.3.0",
