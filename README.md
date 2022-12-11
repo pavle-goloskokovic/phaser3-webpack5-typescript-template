@@ -1,2 +1,1 @@
-# phaser3-webpack4-typescript-boilerplate
-Phaser 3, Webpack 4 and TypeScript Boilerplate
+# Phaser 3.60, Webpack 5, and TypeScript template
