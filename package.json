@@ -4,7 +4,7 @@
     "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
     "main": "src/ts/game.ts",
     "scripts": {
-        "start": "webpack-dev-server --open --port 3017",
+        "start": "webpack-dev-server",
         "build:dev": "webpack",
         "build:prod": "webpack --config webpack.config.prod.ts",
         "eslint": "eslint **/*.ts",
