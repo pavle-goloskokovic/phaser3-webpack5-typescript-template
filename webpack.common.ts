@@ -1,10 +1,7 @@
 import { resolve } from 'path';
-import * as webpack from 'webpack';
-import * as TerserPlugin from 'terser-webpack-plugin';
-import { CleanWebpackPlugin }  from 'clean-webpack-plugin';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import * as gameConfig from './src/ts/game.config';
 
@@ -19,7 +16,7 @@ export default <webpack.Configuration>{
         // defaults to ./src
         // Here the application starts executing
         // and webpack starts bundling
-        game: resolve(__dirname, 'src', 'ts', 'game.ts') // string | object | array
+        game: resolve(__dirname, 'src/ts/game.ts') // string | object | array
     },
     output: {
         // options related to how webpack emits results
@@ -30,107 +27,97 @@ export default <webpack.Configuration>{
         // must be an absolute path (use the Node.js path module)
         // publicPath: "/assets/", // string
         // the url to the output directory resolved relative to the HTML page
+        clean: true
     },
     optimization: {
-        moduleIds: 'hashed',
-        runtimeChunk: 'single',
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all'
-                }
-            }
-        },
-        minimizer: [
-            new TerserPlugin({
-                // webpack defaults
-                // https://github.com/webpack/webpack/blob/master/lib/WebpackOptionsDefaulter.js#L310
-                cache: true,
-                parallel: true,
-                sourceMap: !prod,
-                // custom, for removing comments
-                terserOptions: {
-                    output: {
-                        comments: /^\**!/i
-                    }
-                }
-            })
-        ]
+        moduleIds: 'deterministic',
+        runtimeChunk: false
     },
     module: {
         // configuration regarding modules
         rules: [
             // rules for modules (configure loaders, parser options, etc.)
             {
-                test: /\.ts?$/,
+                test: /\.ts$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/
             },
             {
                 test: /\.ejs$/,
-                loader: 'compile-ejs-loader'
+                use: {
+                    loader: 'ejs-compiled-loader',
+                    /*options: {
+                        htmlmin: true,
+                        htmlminOptions: {
+                            removeComments: true
+                        }
+                    }*/
+                }
             },
             {
-                test: /\.css$/,
+                test: /\.css$/i,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            // only enable hot in development
-                            hmr: !prod,
-                        },
-                    },
+                    prod ? MiniCssExtractPlugin.loader : 'style-loader',
                     'css-loader'
-                ]
+                ],
+            },
+            /**
+             * Fonts
+             */
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+                generator: {
+                    outputPath: 'assets/fonts/',
+                    publicPath: 'assets/fonts/'
+                }
             },
             /**
              * Assets
              */
             {
-                test: RegExp(resolve(__dirname, 'src', 'assets', '(audio|images)', '.+$')
-                    .replace(/\\/g,'\\\\')),
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: `[path][name]${ prod ? '.[contenthash]' : '' }.[ext]`,
-                        context: 'src'
-                    }
-                }]
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    outputPath: 'assets/images/',
+                    publicPath: 'assets/images/'
+                }
             },
             {
-                test: require.resolve('phaser'),
-                use: [{
-                    loader: 'expose-loader',
-                    options: 'Phaser'
-                }]
+                test: /\.xml$/i,
+                use: ['xml-loader']
             }
         ]
     },
     resolve: {
         extensions: ['.ts', '.js'], // .js for Phaser imports
         // extensions that are used
+        alias: {
+            // TODO change to phaser-core.js when pr gets merged
+            // https://github.com/photonstorm/phaser/pull/6320
+            'phaser': resolve(__dirname, 'node_modules/phaser/src/phaser-arcade-physics.js')
+        }
     },
     plugins: [
         new webpack.DefinePlugin({
             'typeof CANVAS_RENDERER': JSON.stringify(true),
             'typeof WEBGL_RENDERER': JSON.stringify(true),
-            'typeof EXPERIMENTAL': JSON.stringify(false),
+            'typeof WEBGL_DEBUG': JSON.stringify(false),
+            'typeof FEATURE_SOUND': JSON.stringify(true),
             'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
             'typeof PLUGIN_FBINSTANT': JSON.stringify(false)
         }),
-        new CleanWebpackPlugin(),
         new webpack.BannerPlugin({
-            banner: banner,
+            banner,
             entryOnly: true
         }),
         new HtmlWebpackPlugin({
             template: './src/ejs/index.ejs',
             templateParameters: {
+                banner: banner.replace('\n', '\n   '),
                 title: gameConfig.title,
                 description: gameConfig.description,
-                analyticsId: prod ? gameConfig.analyticsId : null
+                analyticsId: prod ? gameConfig.analyticsId : null // TODO move above with markup
             },
             minify: prod ? {
                 removeComments: true,
@@ -142,13 +129,11 @@ export default <webpack.Configuration>{
                 }
             } : {}
         }),
-        new HtmlWebpackBannerPlugin({
-            banner: banner
-        }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            chunkFilename: `style${ prod ? '.[contenthash]' : '' }.css`,
+            // all options are optional
+            filename: `style${ prod ? '.[contenthash]' : '' }.css`,
+            chunkFilename: `style${ prod ? '.[contenthash]' : '' }.css`
         })
     ]
 };

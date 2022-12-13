@@ -1,19 +1,22 @@
+<!--!
+<%= banner %>
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="<%= title %>">
-  <meta property="og:description" content="<%= description %>">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= description %>">
 
-  <title><%= title %></title>
+    <title><%= title %></title>
 
-  <%if (typeof analyticsId !== "undefined") { %>
-    <%- include analytics.ejs %>
-  <% } %>
+    <%if (analyticsId) { %> <!--TODO move right after <head>-->
+        <%- require('./analytics.ejs')({ analyticsId }) %>
+    <% } %>
 </head>
 <body>
-  <div id="container"></div>
+    <div id="container"></div>
 </body>
 </html>

@@ -1,16 +1,16 @@
-import * as logger from 'js-logger';
-
 /**
  * Preloader Phaser scene.
  *
- * This is where we load all the assets including images, sounds and all relevant data
- * before starting the game.
+ * This is where we load all the assets including images,
+ * sounds and all relevant data before starting the game.
  */
 export default class Preloader extends Phaser.Scene {
 
+    constructor () { super('preloader'); }
+
     preload (): void
     {
-        logger.info('Preloader enter');
+        console.info('Preloader enter');
 
         // TODO preload assets
 
@@ -20,7 +20,7 @@ export default class Preloader extends Phaser.Scene {
 
     create (): void
     {
-        logger.info('Preloader leave');
+        console.info('Preloader leave');
 
         this.scene.start('game');
     }

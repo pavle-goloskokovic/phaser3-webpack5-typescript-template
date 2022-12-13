@@ -1,5 +1,3 @@
-import * as logger from 'js-logger';
-
 /**
  * Game Phaser scene.
  *
@@ -7,20 +5,17 @@ import * as logger from 'js-logger';
  */
 export default class Game extends Phaser.Scene {
 
+    constructor () { super('game'); }
+
     create (): void
     {
-        logger.info('Game enter');
+        console.info('Game enter');
 
-        this.add.image(
-        <number>this.sys.game.config.width/2,
-        <number>this.sys.game.config.height/2,
-        'bg'
-        );
+        const scale = this.scale;
+        const x = scale.width / 2;
+        const y = scale.height / 2;
 
-        this.add.sprite(
-        <number>this.sys.game.config.width/2,
-        <number>this.sys.game.config.height/2,
-        'logo'
-        );
+        this.add.image(x, y, 'bg');
+        this.add.image(x, y, 'logo');
     }
 }
