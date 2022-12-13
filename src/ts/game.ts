@@ -6,7 +6,7 @@ import '../css/style.css'; // loading css
 
 import 'phaser'; // loading Phaser
 
-import * as gameConfig from './game.config';
+import {size, stats} from './game.config';
 
 import Boot from './scenes/boot';
 import Preloader from './scenes/preloader';
@@ -19,8 +19,8 @@ import Game from './scenes/game';
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent: 'container', // parent id - '' means  no container
-    width: gameConfig.size.x,
-    height: gameConfig.size.y,
+    width: size.x,
+    height: size.y,
     scene: [
         Boot,
         Preloader,
@@ -34,7 +34,7 @@ const config: Phaser.Types.Core.GameConfig = {
  * @type {Phaser.Game}
  */
 let game: Phaser.Game;
-if (gameConfig.stats && process.env.NODE_ENV !== 'production')
+if (process.env.NODE_ENV !== 'production' && stats)
 {
     const PhaserStatsGame = require('./classes/PhaserStatsGame').default;
     game = new PhaserStatsGame(config);

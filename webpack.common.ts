@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import * as gameConfig from './src/ts/game.config';
+import {description, tagId, title} from './src/ts/game.config';
 
 // boolean indicating if current build is dev or prod
 const prod: boolean = module.parent.id.includes('.prod');
@@ -93,8 +93,8 @@ export default <webpack.Configuration>{
         extensions: ['.ts', '.js'], // .js for Phaser imports
         // extensions that are used
         alias: {
-            // TODO change to phaser-core.js when pr gets merged
-            // https://github.com/photonstorm/phaser/pull/6320
+            // TODO change to phaser-core.js with next version
+            // https://github.com/photonstorm/phaser/pull/6320 (merged)
             'phaser': resolve(__dirname, 'node_modules/phaser/src/phaser-arcade-physics.js')
         }
     },
@@ -115,9 +115,9 @@ export default <webpack.Configuration>{
             template: './src/ejs/index.ejs',
             templateParameters: {
                 banner: banner.replace('\n', '\n   '),
-                title: gameConfig.title,
-                description: gameConfig.description,
-                analyticsId: prod ? gameConfig.analyticsId : null // TODO move above with markup
+                tagId: prod ? tagId : null,
+                title,
+                description
             },
             minify: prod ? {
                 removeComments: true,

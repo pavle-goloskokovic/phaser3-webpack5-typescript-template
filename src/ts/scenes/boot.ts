@@ -1,4 +1,4 @@
-import * as gameConfig from '../game.config';
+import { mute } from '../game.config';
 
 /**
  * Boot Phaser game scene.
@@ -15,7 +15,7 @@ export default class Boot extends Phaser.Scene {
     {
         console.info('Boot enter');
 
-        this.sound.mute = gameConfig.mute;
+        this.sound.mute = mute;
 
         console.info('Boot leave');
 

@@ -1,13 +1,14 @@
 /**
- * Game title used for page title tag and metadata. TODO update
+ * Game title used for page title tag and metadata.
  * @type {string}
  */
-export const title = 'Phaser 3.60, Webpack 5, and TypeScript template';
+export const title =
+    'Phaser 3.60, Webpack 5, and TypeScript template'; // TODO update
 /**
- * Game description used for html page metadata. TODO update
+ * Game description used for html page metadata.
  * @type {string}
  */
-export const description = 'TODO add description';
+export const description = 'TODO add description'; // TODO update
 /**
  * Setting which enables us to quickly mute game sounds.
  * @type {boolean}
@@ -30,7 +31,7 @@ export const size: {
     y: 600
 };
 /**
- * Google Analytics ID TODO replace with GA4 TODO update
+ * Google Analytics 4 tag ID
  * @type {string}
  */
-export const analyticsId = 'UA-000000-2';
+export const tagId: string = null; // 'TAG_ID'; // TODO update
