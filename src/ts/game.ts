@@ -8,9 +8,9 @@ import 'phaser'; // loading Phaser
 
 import {size, stats} from './game.config';
 
-import Boot from './scenes/boot';
-import Preloader from './scenes/preloader';
-import Game from './scenes/game';
+import Boot from './scenes/Boot';
+import Preloader from './scenes/Preloader';
+import Game from './scenes/Game';
 
 /**
  * Phaser game config
