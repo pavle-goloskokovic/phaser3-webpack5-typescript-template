@@ -1,10 +1,10 @@
 {
-    "name": "phaser3-webpack4-typescript-boilerplate",
+    "name": "phaser3-webpack5-typescript-template",
     "version": "0.1.0",
-    "description": "Phaser 3, Webpack 4 and TypeScript Boilerplate",
+    "description": "Phaser 3.60, Webpack 5, and TypeScript template",
     "main": "src/ts/game.ts",
     "scripts": {
-        "start": "webpack-dev-server --open --port 3017",
+        "start": "webpack-dev-server",
         "build:dev": "webpack",
         "build:prod": "webpack --config webpack.config.prod.ts",
         "eslint": "eslint **/*.ts",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate.git"
+        "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template.git"
     },
     "keywords": [
         "phaser",
@@ -20,6 +20,7 @@
         "script",
         "typescript",
         "boilerplate",
+        "template",
         "gamedev",
         "game",
         "development",
@@ -29,45 +30,31 @@
     "author": "Pavle Goloskoković",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate/issues"
+        "url": "https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template/issues"
     },
-    "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack4-typescript-boilerplate#readme",
+    "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template#readme",
     "dependencies": {
-        "js-logger": "^1.6.0",
-        "lodash-es": "^4.17.21",
-        "phaser": "^3.19.0",
+        "phaser": "^3.60.0-beta.17",
         "stats.js": "^0.17.0"
     },
     "devDependencies": {
-        "@types/html-webpack-plugin": "^3.2.1",
-        "@types/lodash-es": "^4.17.3",
-        "@types/mini-css-extract-plugin": "^0.8.0",
-        "@types/node": "^12.7.1",
-        "@types/optimize-css-assets-webpack-plugin": "^5.0.0",
+        "@types/node": "^18.11.13",
         "@types/stats.js": "^0.17.0",
-        "@types/terser-webpack-plugin": "^5.2.0",
-        "@types/webpack-merge": "^4.1.5",
-        "@typescript-eslint/eslint-plugin": "^2.3.0",
-        "@typescript-eslint/parser": "^2.3.0",
-        "clean-webpack-plugin": "^3.0.0",
-        "compile-ejs-loader": "0.0.2",
-        "css-loader": "^3.2.0",
-        "ejs": "^3.1.7",
-        "eslint": "^6.4.0",
+        "@typescript-eslint/eslint-plugin": "^5.46.1",
+        "css-loader": "^6.7.2",
+        "css-minimizer-webpack-plugin": "^4.2.2",
+        "ejs-compiled-loader": "^3.1.0",
+        "eslint": "^8.29.0",
         "eslint-plugin-brace-rules": "^0.1.6",
-        "expose-loader": "^0.7.5",
-        "file-loader": "^4.2.0",
-        "html-webpack-banner-plugin": "^2.0.0",
         "html-webpack-plugin": "^5.5.0",
-        "imagemin-webpack-plugin": "^2.4.2",
-        "mini-css-extract-plugin": "^0.8.0",
-        "optimize-css-assets-webpack-plugin": "^5.0.3",
-        "ts-loader": "^6.0.4",
-        "ts-node": "^8.3.0",
-        "typescript": "^3.5.3",
-        "webpack": "^4.39.2",
-        "webpack-cli": "^3.3.12",
+        "mini-css-extract-plugin": "^2.7.2",
+        "style-loader": "^3.3.1",
+        "ts-loader": "^9.4.2",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.4",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
         "webpack-dev-server": "^4.11.1",
-        "webpack-merge": "^4.2.2"
+        "webpack-merge": "^5.8.0"
     }
 }
