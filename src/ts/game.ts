@@ -12,15 +12,11 @@ import Boot from './scenes/Boot';
 import Preloader from './scenes/Preloader';
 import Game from './scenes/Game';
 
-/**
- * Phaser game config
- * @type {Phaser.Types.Core.GameConfig}
- */
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent: 'container', // parent id - '' means  no container
-    width: size.x,
-    height: size.y,
+    width: size.w,
+    height: size.h,
     scene: [
         Boot,
         Preloader,
@@ -28,20 +24,13 @@ const config: Phaser.Types.Core.GameConfig = {
     ]
 };
 
-/**
- * Phaser game instance
- * Choosing implementation based on 'stats' app config setting
- * @type {Phaser.Game}
- */
-let game: Phaser.Game;
+// Choosing implementation based on 'stats' app config setting
 if (process.env.NODE_ENV !== 'production' && stats)
 {
     const PhaserStatsGame = require('./classes/PhaserStatsGame').default;
-    game = new PhaserStatsGame(config);
+    new PhaserStatsGame(config);
 }
 else
 {
-    game = new Phaser.Game(config);
+    new Phaser.Game(config);
 }
-
-game.scene.start('boot');

@@ -21,14 +21,14 @@ export const mute = false;
 export const stats = true;
 /**
  * Game dimensions
- * @type {{x: number; y: number}}
+ * @type {{w: number; h: number}}
  */
 export const size: {
-    readonly x: number;
-    readonly y: number;
+    readonly w: number;
+    readonly h: number;
 } = {
-    x: 1070,
-    y: 600
+    w: 1070,
+    h: 600
 };
 /**
  * Google Analytics 4 tag ID
