@@ -38,13 +38,13 @@
         "stats.js": "^0.17.0"
     },
     "devDependencies": {
-        "@types/node": "^18.11.13",
+        "@types/node": "^18.11.18",
         "@types/stats.js": "^0.17.0",
-        "@typescript-eslint/eslint-plugin": "^5.46.1",
-        "css-loader": "^6.7.2",
+        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "css-loader": "^6.7.3",
         "css-minimizer-webpack-plugin": "^4.2.2",
         "ejs-compiled-loader": "^3.1.0",
-        "eslint": "^8.29.0",
+        "eslint": "^8.32.0",
         "eslint-plugin-brace-rules": "^0.1.6",
         "html-webpack-plugin": "^5.5.0",
         "mini-css-extract-plugin": "^2.7.2",
