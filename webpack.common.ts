@@ -40,6 +40,9 @@ export default <webpack.Configuration>{
             {
                 test: /\.ts$/,
                 loader: 'ts-loader',
+                options: {
+                    onlyCompileBundledFiles: true
+                },
                 exclude: /node_modules/
             },
             {
