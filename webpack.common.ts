@@ -13,17 +13,16 @@ const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author 
 
 const assetsRule = (
     test: webpack.RuleSetRule['test'],
-    folderName: string
+    folderName: 'images' | 'fonts' | 'audio'
 ): webpack.RuleSetRule =>
 {
-    const path = `assets/${folderName}/`;
     return {
         test,
         type: 'asset/resource',
         generator: {
-            filename: `[name]${ prod ? '.[contenthash]' : '' }[ext][query]`,
-            outputPath: path,
-            publicPath: path
+            filename: `assets/${folderName}/[name]${
+                prod ? '.[contenthash]' : ''
+            }[ext][query]`
         }
     };
 };
