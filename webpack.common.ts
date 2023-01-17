@@ -11,6 +11,23 @@ const prod: boolean = module.parent.id.includes('.prod');
 const pkg = require('./package.json');
 const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
+const assetsRule = (
+    test: webpack.RuleSetRule['test'],
+    folderName: string
+): webpack.RuleSetRule =>
+{
+    const path = `assets/${folderName}/`;
+    return {
+        test,
+        type: 'asset/resource',
+        generator: {
+            filename: `[name]${ prod ? '.[contenthash]' : '' }[ext][query]`,
+            outputPath: path,
+            publicPath: path
+        }
+    };
+};
+
 export default <webpack.Configuration>{
     entry: {
         // defaults to ./src
@@ -67,29 +84,16 @@ export default <webpack.Configuration>{
             /**
              * Fonts
              */
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource',
-                generator: {
-                    outputPath: 'assets/fonts/',
-                    publicPath: 'assets/fonts/'
-                }
-            },
+            assetsRule(/\.(woff|woff2|eot|ttf|otf)$/i, 'fonts'),
+            assetsRule(/assets\\fonts\\.+\.xml$/i, 'fonts'),
             /**
-             * Assets
+             * Images
              */
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-                generator: {
-                    outputPath: 'assets/images/',
-                    publicPath: 'assets/images/'
-                }
-            },
-            {
-                test: /\.xml$/i,
-                use: ['xml-loader']
-            }
+            assetsRule(/\.(png|svg|jpg|jpeg|gif)$/i, 'images'),
+            /**
+             * Audio
+             */
+            assetsRule(/\.(mp3|ogg)$/i, 'audio')
         ]
     },
     resolve: {
