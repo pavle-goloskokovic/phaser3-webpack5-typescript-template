@@ -96,11 +96,8 @@ export default <webpack.Configuration>{
         extensions: ['.ts', '.js'], // .js for Phaser imports
         // extensions that are used
         alias: {
-            // TODO change to phaser-core.js with next version
-            // https://github.com/photonstorm/phaser/pull/6320 (merged)
-            /*'phaser': resolve(__dirname,
-                'node_modules/phaser/src/phaser-arcade-physics.js')*/
             'phaser': resolve(__dirname,
+                // 'node_modules/phaser/src/phaser-core.js')
                 'node_modules/phaser/dist/phaser-arcade-physics.min.js')
         }
     },
