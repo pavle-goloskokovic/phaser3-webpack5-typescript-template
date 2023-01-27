@@ -38,9 +38,10 @@
         "stats.js": "^0.17.0"
     },
     "devDependencies": {
+        "@types/gtag.js": "^0.0.12",
         "@types/node": "^18.11.18",
         "@types/stats.js": "^0.17.0",
-        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/eslint-plugin": "^5.49.0",
         "css-loader": "^6.7.3",
         "css-minimizer-webpack-plugin": "^4.2.2",
         "ejs-compiled-loader": "^3.1.0",
