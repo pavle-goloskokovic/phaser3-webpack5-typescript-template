@@ -34,6 +34,7 @@ export default <webpack.Configuration>{
         // and webpack starts bundling
         game: resolve(__dirname, 'src/ts/game.ts') // string | object | array
     },
+    target: ['web', 'es5'],
     output: {
         // options related to how webpack emits results
         filename: `[name]${ prod ? '.[contenthash]' : '' }.js`, // string
@@ -78,7 +79,7 @@ export default <webpack.Configuration>{
                 use: [
                     prod ? MiniCssExtractPlugin.loader : 'style-loader',
                     'css-loader'
-                ],
+                ]
             },
             /**
              * Fonts
