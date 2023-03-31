@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import 'webpack-dev-server';
 import merge from 'webpack-merge';
 import { getLocalHost, getPortHash } from './scripts/get-local-host';
 
@@ -15,5 +16,6 @@ export default merge(common, <webpack.Configuration>{
         host: getLocalHost(),
         port: getPortHash(pkg.name),
         open: true,
+        hot: true
     }
 });
