@@ -133,8 +133,9 @@ export default <webpack.Configuration>{
                 minifyJS: {
                     compress: false,
                     mangle: false
-                }
-            } : {}
+                },
+                minifyCSS: true
+            } : 'auto'
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
