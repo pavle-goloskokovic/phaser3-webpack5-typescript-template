@@ -1,7 +1,7 @@
 {
     "name": "phaser3-webpack5-typescript-template",
     "version": "0.1.0",
-    "description": "Phaser 3.60, Webpack 5, and TypeScript template",
+    "description": "Phaser 3.70, Webpack 5, and TypeScript template",
     "main": "src/ts/game.ts",
     "scripts": {
         "start": "webpack-dev-server",
@@ -34,29 +34,29 @@
     },
     "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template#readme",
     "dependencies": {
-        "phaser": "^3.60.0",
+        "phaser": "^3.70.0",
         "stats.js": "^0.17.0"
     },
     "devDependencies": {
-        "@types/gtag.js": "^0.0.16",
-        "@types/node": "^20.8.3",
-        "@types/stats.js": "^0.17.1",
-        "@typescript-eslint/eslint-plugin": "^6.7.4",
+        "@types/gtag.js": "^0.0.18",
+        "@types/node": "^20.10.4",
+        "@types/stats.js": "^0.17.3",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
         "css-loader": "^6.8.1",
         "css-minimizer-webpack-plugin": "^5.0.1",
         "ejs-compiled-loader": "^3.1.0",
-        "eslint": "^8.51.0",
+        "eslint": "^8.56.0",
         "eslint-plugin-brace-rules": "^0.1.6",
-        "html-webpack-plugin": "^5.5.3",
+        "html-webpack-plugin": "^5.5.4",
         "mini-css-extract-plugin": "^2.7.6",
         "style-loader": "^3.3.3",
-        "ts-loader": "^9.5.0",
-        "ts-node": "^10.9.1",
+        "ts-loader": "^9.5.1",
+        "ts-node": "^10.9.2",
         "tslib": "^2.6.2",
         "typescript": "^4.9.5",
-        "webpack": "^5.88.2",
+        "webpack": "^5.89.0",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^4.15.1",
-        "webpack-merge": "^5.9.0"
+        "webpack-merge": "^5.10.0"
     }
 }

@@ -1,7 +1,7 @@
 import webpack from 'webpack';
-import 'webpack-dev-server';
+import { type Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import merge from 'webpack-merge';
-import { getLocalHost, getPortHash } from './scripts/get-local-host';
+import { getPortHash } from './scripts/get-local-host';
 
 import common from './webpack.common';
 import pkg from './package.json';
@@ -12,10 +12,14 @@ export default merge(common, <webpack.Configuration>{
     devtool: 'source-map', // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
-    devServer: {
-        host: getLocalHost(),
+    devServer: <DevServerConfiguration>{
+        host: 'local-ipv4',
         port: getPortHash(pkg.name),
         open: true,
-        hot: true
+        hot: true,
+        client: {
+            overlay: false
+        },
+        // server: 'https'
     }
 });

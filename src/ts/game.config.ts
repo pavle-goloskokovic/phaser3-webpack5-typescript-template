@@ -3,7 +3,7 @@
  * @type {string}
  */
 export const title =
-    'Phaser 3.60, Webpack 5, and TypeScript template'; // TODO update
+    'Phaser 3.70, Webpack 5, and TypeScript template'; // TODO update
 /**
  * Game description used for html page metadata.
  * @type {string}

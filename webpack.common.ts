@@ -4,11 +4,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import {description, tagId, title} from './src/ts/game.config';
+import pkg from './package.json';
 
 // boolean indicating if current build is dev or prod
 const prod: boolean = module.parent.id.includes('.prod');
 
-const pkg = require('./package.json');
 const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
 const assetsRule = (
