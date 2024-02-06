@@ -50,6 +50,7 @@ export default <webpack.Configuration>{
         // options related to how webpack emits results
         filename: `[name]${ prod ? '.[contenthash]' : '' }.js`, // string
         // the filename template for entry chunks
+        // TODO never set path to root as it will delete the whole project on next build
         path: resolve(__dirname, 'dist'), // string
         // the target directory for all output files
         // must be an absolute path (use the Node.js path module)
@@ -111,7 +112,7 @@ export default <webpack.Configuration>{
         alias: {
             'phaser': resolve(__dirname,
                 // 'node_modules/phaser/src/phaser-core.js')
-                'node_modules/phaser/dist/phaser-arcade-physics.min.js')
+                `node_modules/phaser/dist/phaser-arcade-physics${ prod ? '.min' : '' }.js`)
         }
     },
     plugins: [
