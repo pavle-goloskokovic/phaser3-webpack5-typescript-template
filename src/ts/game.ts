@@ -6,7 +6,7 @@ import '../css/style.css'; // loading css
 
 import 'phaser'; // loading Phaser
 
-import {size, stats} from './game.config';
+import { size, stats } from './game.config';
 
 import Boot from './scenes/Boot';
 import Preloader from './scenes/Preloader';

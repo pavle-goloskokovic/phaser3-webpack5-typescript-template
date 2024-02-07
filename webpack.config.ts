@@ -1,12 +1,12 @@
-import webpack from 'webpack';
-import { type Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import type { Configuration } from 'webpack';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import merge from 'webpack-merge';
 import { getPortHash } from './scripts/get-local-host';
 
 import common from './webpack.common';
 import pkg from './package.json';
 
-export default merge(common, <webpack.Configuration>{
+export default merge(common, <Configuration>{
     mode: 'development', // "production" | "development" | "none"
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
     devtool: 'source-map', // enum
