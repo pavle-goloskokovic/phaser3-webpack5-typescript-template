@@ -79,7 +79,7 @@ export default <webpack.Configuration>{
                 use: {
                     loader: 'ejs-compiled-loader',
                     options: {
-                        htmlmin: true,
+                        htmlmin: prod,
                         htmlminOptions
                     }
                 }
