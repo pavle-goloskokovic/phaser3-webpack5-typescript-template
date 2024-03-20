@@ -25,7 +25,11 @@
         "no-trailing-spaces": "error",
         "semi": "off",
         "quotes": ["error", "single"],
-        "key-spacing": "error",
+        "key-spacing": ["error", {
+          "beforeColon": false,
+          "afterColon": true,
+          "mode": "strict"
+        }],
         "indent": ["error", 4, {
             "VariableDeclarator": 1,
             "SwitchCase": 1
@@ -52,6 +56,11 @@
             }
         }],
         "@typescript-eslint/semi": "error",
+        "@typescript-eslint/type-annotation-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "@typescript-eslint/no-inferrable-types": "error",
         "@typescript-eslint/consistent-type-imports": "error",
         "@typescript-eslint/no-import-type-side-effects": "error",
         "brace-rules/brace-on-same-line": ["error", "allman", { "allowSingleLine": true }]
