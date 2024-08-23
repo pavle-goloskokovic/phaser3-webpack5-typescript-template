@@ -1,9 +1,11 @@
+import Scene = Phaser.Scene;
+
 /**
  * Game Phaser scene.
  *
  * This is where all the logic for your game goes.
  */
-export default class Game extends Phaser.Scene {
+export class Game extends Scene {
 
     constructor () { super('game'); }
 

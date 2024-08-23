@@ -1,10 +1,12 @@
+import Scene = Phaser.Scene;
+
 /**
  * Preloader Phaser scene.
  *
  * This is where we load all the assets including images,
  * sounds and all relevant data before starting the game.
  */
-export default class Preloader extends Phaser.Scene {
+export class Preloader extends Scene {
 
     constructor () { super('preloader'); }
 

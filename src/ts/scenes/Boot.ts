@@ -1,3 +1,4 @@
+import Scene = Phaser.Scene;
 import { mute } from '../game.config';
 
 /**
@@ -7,7 +8,7 @@ import { mute } from '../game.config';
  * before we start loading assets and
  * start dealing with game specific logic.
  */
-export default class Boot extends Phaser.Scene {
+export class Boot extends Scene {
 
     constructor () { super('boot'); }
 

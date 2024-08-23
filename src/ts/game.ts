@@ -5,15 +5,18 @@
 import '../css/style.css'; // loading css
 
 import 'phaser'; // loading Phaser
+import PhaserGame = Phaser.Game;
+import GameConfig = Phaser.Types.Core.GameConfig;
+import AUTO = Phaser.AUTO;
 
 import { size, stats } from './game.config';
 
-import Boot from './scenes/Boot';
-import Preloader from './scenes/Preloader';
-import Game from './scenes/Game';
+import { Boot } from './scenes/Boot';
+import { Preloader } from './scenes/Preloader';
+import { Game } from './scenes/Game';
 
-const config: Phaser.Types.Core.GameConfig = {
-    type: Phaser.AUTO,
+const config: GameConfig = {
+    type: AUTO,
     parent: 'container', // parent id - '' means  no container
     width: size.w,
     height: size.h,
@@ -32,5 +35,5 @@ if (process.env.NODE_ENV !== 'production' && stats)
 }
 else
 {
-    new Phaser.Game(config);
+    new PhaserGame(config);
 }

@@ -1,9 +1,10 @@
+import Game = Phaser.Game;
 import Stats from 'stats.js';
 
 /**
  * Phaser game implementation which adds performance stats to the game.
  */
-export default class PhaserStatsGame extends Phaser.Game {
+export class PhaserStatsGame extends Game {
 
     private stats: Stats;
 
