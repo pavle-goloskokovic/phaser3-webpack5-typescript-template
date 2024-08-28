@@ -112,6 +112,7 @@ export default <webpack.Configuration>{
         alias: {
             'phaser': resolve(__dirname,
                 // 'node_modules/phaser/src/phaser-core.js')
+                // `src/js/phaser-custom${ prod ? '.min' : '' }.js`)
                 `node_modules/phaser/dist/phaser-arcade-physics${ prod ? '.min' : '' }.js`)
         }
     },
