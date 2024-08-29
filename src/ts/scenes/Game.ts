@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import Scene = Phaser.Scene;
 
 /**

@@ -17,9 +17,7 @@
         "@typescript-eslint/eslint-plugin",
         "brace-rules"
     ],
-    "globals": {
-        "Phaser": "readonly"
-    },
+    "globals": {},
     "rules": {
         "space-before-function-paren": ["error", "always"],
         "no-trailing-spaces": "error",

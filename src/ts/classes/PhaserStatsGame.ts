@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import Game = Phaser.Game;
 import Stats from 'stats.js';
 

@@ -4,7 +4,7 @@
 
 import '../css/style.css'; // loading css
 
-import 'phaser'; // loading Phaser
+import Phaser from 'phaser';
 import PhaserGame = Phaser.Game;
 import GameConfig = Phaser.Types.Core.GameConfig;
 import AUTO = Phaser.AUTO;
@@ -30,7 +30,7 @@ const config: GameConfig = {
 // Choosing implementation based on 'stats' app config setting
 if (process.env.NODE_ENV !== 'production' && stats)
 {
-    const PhaserStatsGame = require('./classes/PhaserStatsGame').default;
+    const { PhaserStatsGame } = require('./classes/PhaserStatsGame');
     new PhaserStatsGame(config);
 }
 else

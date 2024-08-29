@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import Scene = Phaser.Scene;
 import { mute } from '../game.config';
 
