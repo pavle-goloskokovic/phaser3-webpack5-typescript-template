@@ -17,8 +17,9 @@ export class Preloader extends Scene {
 
         // TODO preload assets
 
-        this.load.image('bg', require('../../assets/images/bg.jpg'));
-        this.load.image('logo', require('../../assets/images/logo.png'));
+        this.load
+            .image('bg', require('../../assets/images/bg.jpg'))
+            .image('logo', require('../../assets/images/logo.png'));
     }
 
     create (): void
