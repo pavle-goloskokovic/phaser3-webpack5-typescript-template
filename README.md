@@ -1,7 +1,7 @@
 ![Phaser, Webpack, and TypeScript logos](https://user-images.githubusercontent.com/7340300/207882386-42fd2b51-e44e-40d7-8d10-710b45da1c1d.png)
 
 
-# 🕹️ Phaser 3.80, Webpack 5, and TypeScript template
+# 🕹️ Phaser 3.85, Webpack 5, and TypeScript template
 
 ## How To Use
 
