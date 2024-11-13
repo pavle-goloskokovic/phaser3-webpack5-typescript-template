@@ -2,6 +2,8 @@ import { resolve } from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import type autoprefixer from 'autoprefixer';
+import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
 
 import { description, tagId, title } from './src/ts/game.config';
 import pkg from './package.json';
@@ -88,7 +90,19 @@ export default <webpack.Configuration>{
                 test: /\.css$/i,
                 use: [
                     prod ? MiniCssExtractPlugin.loader : 'style-loader',
-                    'css-loader'
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: { postcssOptions: { plugins: [[
+                            'autoprefixer',
+                            <autoprefixer.Options> {
+                                // Options
+                                overrideBrowserslist: [
+                                    '>0.2%, last 4 versions'
+                                ]
+                            }
+                        ]] } }
+                    }
                 ]
             },
             /**
@@ -127,7 +141,8 @@ export default <webpack.Configuration>{
         }),
         new webpack.BannerPlugin({
             banner,
-            entryOnly: true
+            entryOnly: true,
+            exclude: /\.css$/
         }),
         new HtmlWebpackPlugin({
             template: './src/ejs/index.ejs',
@@ -145,6 +160,12 @@ export default <webpack.Configuration>{
             // all options are optional
             filename: `style${ prod ? '.[contenthash]' : '' }.css`,
             chunkFilename: `style${ prod ? '.[contenthash]' : '' }.css`
+        }),
+        new HTMLInlineCSSWebpackPlugin({
+            styleTagFactory ({ style })
+            {
+                return `<style>${style}</style>`;
+            }
         })
     ]
 };
