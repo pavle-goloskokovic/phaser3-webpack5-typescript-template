@@ -137,6 +137,7 @@ export default <webpack.Configuration>{
                 title,
                 description
             },
+            inject: 'body',
             minify: prod ? htmlminOptions : 'auto'
         }),
         new MiniCssExtractPlugin({
