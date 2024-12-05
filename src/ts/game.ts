@@ -24,7 +24,10 @@ const config: GameConfig = {
         Boot,
         Preloader,
         Game
-    ]
+    ],
+    loader: {
+        maxRetries: 10
+    }
 };
 
 // Choosing implementation based on 'stats' app config setting
