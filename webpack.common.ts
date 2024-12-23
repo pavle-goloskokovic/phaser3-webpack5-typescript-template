@@ -125,9 +125,10 @@ export default <webpack.Configuration>{
         // extensions that are used
         alias: {
             'phaser': resolve(__dirname,
-                // 'node_modules/phaser/src/phaser-core.js')
-                // `src/js/phaser-custom${ prod ? '.min' : '' }.js`)
-                `node_modules/phaser/dist/phaser-arcade-physics${ prod ? '.min' : '' }.js`)
+                // 'node_modules/phaser/src/phaser-core.js'
+                // `src/js/phaser-custom${ prod ? '.min' : '' }.js`
+                `node_modules/phaser/dist/phaser-arcade-physics${ prod ? '.min' : '' }.js`
+            )
         }
     },
     plugins: [

@@ -40,7 +40,7 @@
     },
     "devDependencies": {
         "@types/gtag.js": "^0.0.20",
-        "@types/node": "^22.10.1",
+        "@types/node": "^22.10.2",
         "@types/stats.js": "^0.17.3",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "autoprefixer": "^10.4.20",
@@ -58,9 +58,9 @@
         "ts-node": "^10.9.2",
         "tslib": "^2.8.1",
         "typescript": "^5.7.2",
-        "webpack": "^5.97.0",
-        "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^5.1.0",
+        "webpack": "^5.97.1",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.0",
         "webpack-merge": "^6.0.1"
     }
 }
