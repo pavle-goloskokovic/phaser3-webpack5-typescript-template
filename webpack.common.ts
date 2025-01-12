@@ -113,7 +113,7 @@ export default <webpack.Configuration>{
             /**
              * Images
              */
-            assetsRule(/\.(png|svg|jpg|jpeg|gif)$/i, 'images'),
+            assetsRule(/\.(png|webp|svg|jpg|jpeg|gif)$/i, 'images'),
             /**
              * Audio
              */
