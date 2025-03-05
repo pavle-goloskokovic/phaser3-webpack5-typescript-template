@@ -40,6 +40,12 @@ const preloadAudio = (scene: Scene) =>
         .start();
 };
 
+/**
+ * Preloader Phaser scene.
+ *
+ * This is where we load all the assets including images,
+ * sounds and all relevant data before starting the game.
+ */
 export class Preloader extends Scene {
 
     constructor () { super('preloader'); }
