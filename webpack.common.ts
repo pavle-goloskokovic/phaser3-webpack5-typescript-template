@@ -9,7 +9,7 @@ import { description, tagId, title } from './src/ts/game.config';
 import pkg from './package.json';
 
 // boolean indicating if current build is dev or prod
-const prod: boolean = module.parent.id.includes('.prod');
+const prod: boolean = process.env.npm_lifecycle_event.endsWith(':prod');
 
 const banner = '\nCopyright (c) ' + new Date().getFullYear() + ' ' + pkg.author + '\n';
 
