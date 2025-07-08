@@ -1,7 +1,7 @@
 {
     "name": "phaser3-webpack5-typescript-template",
     "version": "0.1.0",
-    "description": "Phaser 3.88, Webpack 5, and TypeScript template",
+    "description": "Phaser 3.90, Webpack 5, and TypeScript template",
     "main": "src/ts/game.ts",
     "private": true,
     "scripts": {
