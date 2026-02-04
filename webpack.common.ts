@@ -117,7 +117,7 @@ export default <webpack.Configuration>{
             /**
              * Audio
              */
-            assetsRule(/\.(mp3|ogg)$/i, 'audio')
+            assetsRule(/\.(mp3|ogg|m4a)$/i, 'audio')
         ]
     },
     resolve: {
