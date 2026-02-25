@@ -6,8 +6,8 @@ import Scene = Phaser.Scene;
  *
  * This is where all the logic for your game goes.
  */
-export class Game extends Scene {
-
+export class Game extends Scene
+{
     constructor () { super('game'); }
 
     create (): void

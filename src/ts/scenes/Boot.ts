@@ -34,8 +34,8 @@ const handleSoundManagerEvents = (game: Game, sound: any): void =>
  * before we start loading assets and
  * start dealing with game specific logic.
  */
-export class Boot extends Scene {
-
+export class Boot extends Scene
+{
     constructor () { super('boot'); }
 
     create (): void

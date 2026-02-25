@@ -5,8 +5,8 @@ import Stats from 'stats.js';
 /**
  * Phaser game implementation which adds performance stats to the game.
  */
-export class PhaserStatsGame extends Game {
-
+export class PhaserStatsGame extends Game
+{
     private stats: Stats;
 
     protected boot (): void
