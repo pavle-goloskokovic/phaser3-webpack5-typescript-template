@@ -87,7 +87,12 @@ export default defineConfig(
             '@typescript-eslint/consistent-type-imports': 'error',
             '@typescript-eslint/no-import-type-side-effects': 'error',
             // Replace obsolete brace-rules/brace-on-same-line with core brace-style
-            'brace-style': ['error', 'allman', { allowSingleLine: true }],
+            'brace-style': ['error', 'allman', {
+                allowSingleLine: true,
+            }],
+            '@typescript-eslint/no-unused-expressions': ['error', {
+                allowShortCircuit: true,
+            }],
         },
     },
 );
