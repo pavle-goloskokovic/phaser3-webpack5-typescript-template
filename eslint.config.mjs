@@ -5,26 +5,16 @@ import globals from 'globals';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default defineConfig(
-    // Ignore build artifacts
+    // 1) Ignore build artifacts
     {
         ignores: ['dist/**', 'build/**', 'coverage/**', 'node_modules/**'],
     },
 
-    // Base JavaScript recommended rules
-    eslint.configs.recommended,
-
-    // TypeScript recommended rules (including type-checked set)
-    tseslint.configs.recommended,
-    tseslint.configs.recommendedTypeChecked,
-
-    // Project-specific customizations and legacy rule migration
+    // 2) Base JS + stylistic rules for JS & TS
     {
-        files: ['**/*.ts'],
+        files: ['**/*.{js,cjs,mjs,ts,tsx}'],
+        ...eslint.configs.recommended,
         languageOptions: {
-            parserOptions: {
-                // Enable type-aware linting using your tsconfig
-                projectService: true,
-            },
             globals: {
                 ...globals.browser,
                 ...globals.node,
@@ -38,6 +28,9 @@ export default defineConfig(
             'space-before-function-paren': ['error', 'always'],
             'no-trailing-spaces': 'error',
             'semi': 'off',
+            'no-unused-expressions': ['error', {
+                allowShortCircuit: true,
+            }],
             'quotes': ['error', 'single'],
             'key-spacing': ['error', {
                 beforeColon: false,
@@ -57,7 +50,31 @@ export default defineConfig(
                 },
             }],
             'object-curly-spacing': ['error', 'always'],
+            '@stylistic/semi': ['error', 'always'],
+            // Replace obsolete brace-rules/brace-on-same-line with core brace-style
+            'brace-style': ['error', 'allman', {
+                allowSingleLine: true,
+            }],
+        },
+    },
 
+    // 3) Non-typed TS rules (safe everywhere TS is parsed)
+    ...tseslint.configs.recommended,
+
+    // 4) Typed TS rules – scoped to TS/TSX and with projectService enabled
+    ...tseslint.configs.recommendedTypeChecked.map((config) => ({
+        ...config,
+        files: ['**/*.{ts,tsx}'],
+        languageOptions: {
+            ...(config.languageOptions ?? {}),
+            parserOptions: {
+                ...(config.languageOptions?.parserOptions ?? {}),
+                // Enable type-aware linting using your tsconfig
+                projectService: true,
+            },
+        },
+        rules: {
+            ...(config.rules ?? {}),
             // TypeScript-specific rules migrated and aligned with modern best practices
             '@typescript-eslint/no-var-requires': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
@@ -73,7 +90,6 @@ export default defineConfig(
                     requireLast: false,
                 },
             }],
-            '@stylistic/semi': ['error', 'always'],
             '@stylistic/type-annotation-spacing': ['error', {
                 before: false,
                 after: true,
@@ -86,13 +102,9 @@ export default defineConfig(
             '@typescript-eslint/no-inferrable-types': 'error',
             '@typescript-eslint/consistent-type-imports': 'error',
             '@typescript-eslint/no-import-type-side-effects': 'error',
-            // Replace obsolete brace-rules/brace-on-same-line with core brace-style
-            'brace-style': ['error', 'allman', {
-                allowSingleLine: true,
-            }],
             '@typescript-eslint/no-unused-expressions': ['error', {
                 allowShortCircuit: true,
             }],
         },
-    },
+    })),
 );
