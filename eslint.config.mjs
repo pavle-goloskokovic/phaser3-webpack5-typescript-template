@@ -30,6 +30,7 @@ export default defineConfig(
             'semi': 'off',
             'no-unused-expressions': ['error', {
                 allowShortCircuit: true,
+                allowTernary: true,
             }],
             'quotes': ['error', 'single'],
             'key-spacing': ['error', {
@@ -59,7 +60,10 @@ export default defineConfig(
     },
 
     // 3) Non-typed TS rules (safe everywhere TS is parsed)
-    ...tseslint.configs.recommended,
+    ...tseslint.configs.recommended.map((config) => ({
+        ...config,
+        files: ['**/*.{ts,tsx}'],
+    })),
 
     // 4) Typed TS rules – scoped to TS/TSX and with projectService enabled
     ...tseslint.configs.recommendedTypeChecked.map((config) => ({
@@ -104,6 +108,7 @@ export default defineConfig(
             '@typescript-eslint/no-import-type-side-effects': 'error',
             '@typescript-eslint/no-unused-expressions': ['error', {
                 allowShortCircuit: true,
+                allowTernary: true,
             }],
         },
     })),
