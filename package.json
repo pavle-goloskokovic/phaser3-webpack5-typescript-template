@@ -45,7 +45,7 @@
         "@types/stats.js": "^0.17.4",
         "autoprefixer": "^10.4.24",
         "css-loader": "^7.1.4",
-        "css-minimizer-webpack-plugin": "^7.0.4",
+        "css-minimizer-webpack-plugin": "^8.0.0",
         "ejs-compiled-loader": "^3.1.0",
         "eslint": "^10.0.2",
         "globals": "^17.3.0",
