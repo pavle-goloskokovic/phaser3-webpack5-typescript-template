@@ -6,13 +6,13 @@ import { getPortHash } from './scripts/get-local-host';
 import common from './webpack.common';
 import pkg from './package.json';
 
-export default merge(common, <Configuration>{
+export default merge(common, {
     mode: 'development', // "production" | "development" | "none"
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
     devtool: 'source-map', // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
-    devServer: <DevServerConfiguration>{
+    devServer: {
         host: 'local-ipv4',
         port: getPortHash(pkg.name),
         open: true,
@@ -21,5 +21,5 @@ export default merge(common, <Configuration>{
             overlay: false
         },
         // server: 'https'
-    }
-});
+    } satisfies DevServerConfiguration
+} satisfies Configuration);

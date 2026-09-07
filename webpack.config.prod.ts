@@ -5,7 +5,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 import common from './webpack.common';
 
-export default merge(common, <webpack.Configuration>{
+export default merge(common, {
     mode: 'production', // "production" | "development" | "none"
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
     optimization: {
@@ -35,4 +35,4 @@ export default merge(common, <webpack.Configuration>{
             'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
-});
+} satisfies webpack.Configuration);
